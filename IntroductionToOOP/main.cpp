@@ -36,6 +36,7 @@ double distance(Point A, Point B);
 void main()
 {
 	setlocale(LC_ALL, "");
+
 #ifdef STRUCT_POINT
 	int a;
 	Point A; //Объявление переменной "А" типа "Point"

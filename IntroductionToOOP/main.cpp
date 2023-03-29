@@ -1,6 +1,9 @@
 #include<iostream>
 #include<cmath>
 using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
 
 class Point
 {
@@ -25,13 +28,42 @@ public:
 	}
 	double distance(Point other)
 	{
-		return sqrt(pow(x, 2) + pow(y, 2));
+		return sqrt(pow((this->x - other.x), 2) + pow((this->y - other.y), 2));
 	}
+	void print()
+	{
+		cout << "x = " << x << " y = " << y << endl;
+	}
+	//Constructor
+//Point()
+//{
+//	x = y = 0;
+//	cout << "Constructor:\t" << this << endl;
+//}
+//Point(double x)
+//{
+//	this -> x = x;
+//	y = 0;
+//	cout << "1ArgConstructor:\t" << this << endl;
+//}
+Point(double x = 0, double y = 0)
+{
+	this->x = x;
+	this->y = y;
+	cout << "Constructor:\t" << this << endl;
+}
+~Point()
+{
+	cout << "Destructor:\t" << this << endl;
+}
 };
+
+
 
 double distance(Point A, Point B);
 
 //#define STRUCT_POINT
+//#define DISTANCE_CHECK
 
 void main()
 {
@@ -49,14 +81,27 @@ void main()
 	cout << pA->x << "\t" << pA->y << endl;
 #endif
 
+#ifdef DISTANCE_CHECK
 	Point A, B;
 	A.set_x(2); A.set_y(3);
-	B.set_x(4); B.set_y(6);
+	B.set_x(7); B.set_y(8);
 	cout << A.get_x() << "\t" << A.get_y() << endl;
-	cout << "Расстояние точки А до центра СК: " << A.distance(A.get_x(), A.get_y()) << endl;
+	cout << "Расстояние точки А до центра СК: " << A.distance(B) << endl;
 	cout << B.get_x() << "\t" << B.get_y() << endl;
-	cout << "Расстояние точки B до центра СК: " << B.distance(B.get_x(), B.get_y()) << endl << endl;
-	cout << "Расстояние между точками А и В: "  << distance(A, B) << endl;
+	cout << "Расстояние точки B до центра СК: " << B.distance(A) << endl << endl;
+	cout << "Расстояние между точками А и В: " << distance(A, B) << endl;
+	A.print();
+	B.print();
+#endif 
+
+	Point A; //defaul constructor
+	A.print();
+
+	Point B = 5;
+	B.print();
+	Point C(2, 3);
+	C.print();
+
 }
 double distance(Point A, Point B)
 {
